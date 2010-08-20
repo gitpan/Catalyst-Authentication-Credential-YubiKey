@@ -16,7 +16,10 @@ Makefile.PL
 MANIFEST
 META.yml
 README
+t/.FakeRealm.pm.swp
 t/00-load.t
+t/10-basic.t
+t/FakeRealm.pm
 t/perl-critic.t
 t/pod-coverage.t
 t/pod.t
