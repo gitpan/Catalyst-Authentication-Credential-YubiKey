@@ -1,4 +1,3 @@
-.cvsignore
 Changes
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
@@ -13,10 +12,9 @@ inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/Catalyst/Authentication/Credential/YubiKey.pm
 Makefile.PL
-MANIFEST
+MANIFEST			This list of files
 META.yml
 README
-t/.FakeRealm.pm.swp
 t/00-load.t
 t/10-basic.t
 t/FakeRealm.pm
