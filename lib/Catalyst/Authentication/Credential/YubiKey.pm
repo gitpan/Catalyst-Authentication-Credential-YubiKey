@@ -11,7 +11,7 @@ Catalyst::Authentication::Credential::YubiKey - YubiKey authentication
 
 =head1 VERSION
 
-Version 0.02
+Version 0.06
 
 =head1 SYNOPSIS
 
@@ -31,7 +31,7 @@ Uses the Catalyst::Plugin::Authentication system.
         credential => {
           class => 'YubiKey',
 
-          # This is your API ID, from http://yubico.com/developers/api/
+          # This is your API ID, from http://api.yubico.com/get-api-key/
           api_id => 666,
 
           # This is your API Key, as above:
@@ -60,7 +60,7 @@ have open-sourced theirs, and some people may be using such.)
 
 =cut
 
-our $VERSION = '0.04';
+our $VERSION = '0.06';
 
 has [qw/ api_key api_id /] => (
     isa => NonEmptySimpleStr,
@@ -108,8 +108,9 @@ sub authenticate {
         return;
     }
 
-    # The user ID is the first 12 characters..
-    my $yubi_id = substr($otp, 0, 12);
+    # The user ID is the first 2-12 characters.. but the next part is always
+    # 32 characters.
+    my $yubi_id = substr($otp, 0, -32);
     my $user = $realm->find_user({ $self->id_for_store => $yubi_id }, $c);
     unless ($user) {
         $c->log->error("Authenticated user, but could not locate in "
